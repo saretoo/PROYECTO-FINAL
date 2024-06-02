@@ -219,6 +219,9 @@ public:
 
 
 
+		//!Variables
+		Pr_Time &VNextTimeout;
+		CDTMList &VCurrentTMList;
 
 
 		// Pools *************************************************
@@ -233,6 +236,8 @@ public:
 
 		//!Constructor
 		EDROOM_CTX_Top_0 (CCGuidance &act,
+				Pr_Time & EDROOMpVarVNextTimeout,
+				CDTMList & EDROOMpVarVCurrentTMList,
 				CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList );
 
 		//!Copy constructor
@@ -276,7 +281,7 @@ public:
 		/**
 		 * \brief Inicializamos el timer que va a ejecutar el guidance cada 100ms
 		 */
-		void	FInitGuidance()();
+		void	FInitGuidance();
 
 		/**
 		 * \brief  
@@ -305,6 +310,9 @@ public:
 		//!next state identifier
 		EDROOM_CTX_Top_0::TEDROOMStateID edroomNextState;
 
+		//!Variables
+		Pr_Time VNextTimeout;
+		CDTMList VCurrentTMList;
 
 
 		// Pools**************************************************

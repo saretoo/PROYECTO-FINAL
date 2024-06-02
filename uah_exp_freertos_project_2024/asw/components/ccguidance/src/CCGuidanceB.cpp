@@ -11,6 +11,8 @@
 	// CONSTRUCTORS***********************************************
 
 CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCGuidance &act,
+	 Pr_Time & EDROOMpVarVNextTimeout,
+	 CDTMList & EDROOMpVarVCurrentTMList,
 	 CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList ):
 
 	EDROOMcomponent(act),
@@ -19,6 +21,8 @@ CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCGuidance &act,
 	TMChannelCtrl(EDROOMcomponent.TMChannelCtrl),
 	Guidance(EDROOMcomponent.Guidance),
 	GuidanceTimer(EDROOMcomponent.GuidanceTimer),
+	VNextTimeout(EDROOMpVarVNextTimeout),
+	VCurrentTMList(EDROOMpVarVCurrentTMList),
 	EDROOMPoolCDTMList(EDROOMpPoolCDTMList)
 {
 }
@@ -31,6 +35,8 @@ CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(EDROOM_CTX_Top_0 &context):
 	TMChannelCtrl(context.TMChannelCtrl),
 	Guidance(context.Guidance),
 	GuidanceTimer(context.GuidanceTimer),
+	VNextTimeout(context.VNextTimeout),
+	VCurrentTMList(context.VCurrentTMList),
 	EDROOMPoolCDTMList(context.EDROOMPoolCDTMList )
 {
 
@@ -100,7 +106,7 @@ PUSService129::GuidanceControl(); //Inicialise PUSService 129
 
 
 
-void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()()
+void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()
 
 {
    //Define absolute time
@@ -162,6 +168,8 @@ CDTMList *	CCGuidance::EDROOM_CTX_Top_0::CEDROOMPOOLCDTMList::AllocData()
 CCGuidance::EDROOM_SUB_Top_0::EDROOM_SUB_Top_0 (CCGuidance&act
 	,CEDROOMMemory *pEDROOMMemory):
 		EDROOM_CTX_Top_0(act,
+			VNextTimeout,
+			VCurrentTMList,
 			EDROOMPoolCDTMList),
 		EDROOMPoolCDTMList(
 			10, pEDROOMMemory->poolCDTMList,
