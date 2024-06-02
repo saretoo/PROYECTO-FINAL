@@ -26,9 +26,13 @@ class UAHExpEmuKinematic PUSService129::mUAHExpEmulator;
 void PUSService129::ExecTC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
 	switch (tcHandler.GetSubType()) {
-
-	//TODO
-
+	case (1):
+			Exec129_1TC(tcHandler, tmList);
+			break;
+	case (2):
+			Exec129_2TC(tcHandler, tmList);
+			break;
+													//TODO(NE)
 	default:
 		break;
 	}
@@ -37,17 +41,39 @@ void PUSService129::ExecTC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
 void PUSService129::Exec129_1TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
+    // Leer valores de CVx y CVy del tcHandler
+    float CVx = tcHandler.GetNextFloat();
+    float CVy = tcHandler.GetNextFloat();
 
-	//TODO
+    // Validar que CVx y CVy están en el rango [-1.0, +1.0]
+    if (CVx >= -1.0 && CVx <= 1.0 && CVy >= -1.0 && CVy <= 1.0) {
+        sCVx = CVx;
+        sCVy = CVy;
 
-
-
+        // Generar un TM de éxito
+        PUSService1::BuildTM_1_7(tcHandler, tmList); // Success
+    } else {
+        // Generar un TM de error
+       // PUSService1::BuildTM_1_8_TC_129_X_TCNotValid(tcHandler, tmList, 0); // Error: Valores fuera de rango
+    }
 }
 
 void PUSService129::Exec129_2TC(CDTCHandler &tcHandler, CDTMList &tmList) {
+    // Leer valores de Kpx y Kpy del tcHandler
+    float Kpx = tcHandler.GetNextFloat();
+    float Kpy = tcHandler.GetNextFloat();
 
-	//TODO
+    // Validar que Kpx y Kpy están en el rango [0.0, +0.5]
+    if (Kpx >= 0.0 && Kpx <= 0.5 && Kpy >= 0.0 && Kpy <= 0.5) {
+        sKpx = Kpx;
+        sKpy = Kpy;
 
+        // Generar un TM de éxito
+        PUSService1::BuildTM_1_7(tcHandler, tmList); // Success
+    } else {
+    	// Generar un TM de error
+        //PUSService1::BuildTM_1_8_TC_20_X_PIDNotValid(tcHandler, tmList, 0); // Error: Valores fuera de rango
+}
 }
 
 const float ActuatorMAX_X_Y_Newtons = 0.100; //100 MiliNewtons

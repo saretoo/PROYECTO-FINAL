@@ -100,7 +100,7 @@ PUSService129::GuidanceControl(); //Inicialise PUSService 129
 
 
 
-void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()()
+void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()
 
 {
    //Define absolute time
