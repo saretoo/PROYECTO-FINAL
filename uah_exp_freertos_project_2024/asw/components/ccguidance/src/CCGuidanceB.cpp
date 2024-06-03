@@ -11,8 +11,8 @@
 	// CONSTRUCTORS***********************************************
 
 CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCGuidance &act,
-	 Pr_Time & EDROOMpVarVNextTimeout,
 	 CDTMList & EDROOMpVarVCurrentTMList,
+	 Pr_Time & EDROOMpVarVNextTimeout,
 	 CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList ):
 
 	EDROOMcomponent(act),
@@ -21,8 +21,8 @@ CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCGuidance &act,
 	TMChannelCtrl(EDROOMcomponent.TMChannelCtrl),
 	Guidance(EDROOMcomponent.Guidance),
 	GuidanceTimer(EDROOMcomponent.GuidanceTimer),
-	VNextTimeout(EDROOMpVarVNextTimeout),
 	VCurrentTMList(EDROOMpVarVCurrentTMList),
+	VNextTimeout(EDROOMpVarVNextTimeout),
 	EDROOMPoolCDTMList(EDROOMpPoolCDTMList)
 {
 }
@@ -35,8 +35,8 @@ CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(EDROOM_CTX_Top_0 &context):
 	TMChannelCtrl(context.TMChannelCtrl),
 	Guidance(context.Guidance),
 	GuidanceTimer(context.GuidanceTimer),
-	VNextTimeout(context.VNextTimeout),
 	VCurrentTMList(context.VCurrentTMList),
+	VNextTimeout(context.VNextTimeout),
 	EDROOMPoolCDTMList(context.EDROOMPoolCDTMList )
 {
 
@@ -112,8 +112,10 @@ void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()
    //Define absolute time
   Pr_Time time;
 	 
- 
- 
+time.GetTime(); // Get current monotonic time   
+time+=Pr_Time(0,100000); // Add X sec + Y microsec    
+VNextTimeout=time;
+
    //Program absolute timer 
    GuidanceTimer.InformAt( time ); 
 }
@@ -168,8 +170,8 @@ CDTMList *	CCGuidance::EDROOM_CTX_Top_0::CEDROOMPOOLCDTMList::AllocData()
 CCGuidance::EDROOM_SUB_Top_0::EDROOM_SUB_Top_0 (CCGuidance&act
 	,CEDROOMMemory *pEDROOMMemory):
 		EDROOM_CTX_Top_0(act,
-			VNextTimeout,
 			VCurrentTMList,
+			VNextTimeout,
 			EDROOMPoolCDTMList),
 		EDROOMPoolCDTMList(
 			10, pEDROOMMemory->poolCDTMList,
@@ -217,6 +219,8 @@ void CCGuidance::EDROOM_SUB_Top_0::EDROOMBehaviour()
 				break;
 			//Next Transition is Init
 			case (Init):
+				//Execute Action 
+				FInitGuidance();
 				//Next State is Ready
 				edroomNextState = Ready;
 				break;

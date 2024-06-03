@@ -220,8 +220,8 @@ public:
 
 
 		//!Variables
-		Pr_Time &VNextTimeout;
 		CDTMList &VCurrentTMList;
+		Pr_Time &VNextTimeout;
 
 
 		// Pools *************************************************
@@ -236,8 +236,8 @@ public:
 
 		//!Constructor
 		EDROOM_CTX_Top_0 (CCGuidance &act,
-				Pr_Time & EDROOMpVarVNextTimeout,
 				CDTMList & EDROOMpVarVCurrentTMList,
+				Pr_Time & EDROOMpVarVNextTimeout,
 				CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList );
 
 		//!Copy constructor
@@ -311,8 +311,8 @@ public:
 		EDROOM_CTX_Top_0::TEDROOMStateID edroomNextState;
 
 		//!Variables
-		Pr_Time VNextTimeout;
 		CDTMList VCurrentTMList;
+		Pr_Time VNextTimeout;
 
 
 		// Pools**************************************************
