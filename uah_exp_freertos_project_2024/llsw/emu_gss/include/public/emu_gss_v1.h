@@ -33,6 +33,7 @@
 #include "../emu_gss/emu_gss_pus_service17.h"
 
 #include "../emu_gss/emu_gss_pus_service128.h"
+#include "../emu_gss/emu_gss_pus_service129.h"
 
 void EmuGSS_ShowTM(const struct tm_descriptor * pTMDescriptor);
 
