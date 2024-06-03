@@ -54,7 +54,7 @@ void PUSService129::Exec129_1TC(CDTCHandler &tcHandler, CDTMList &tmList) {
         PUSService1::BuildTM_1_7(tcHandler, tmList); // Success
     } else {
         // Generar un TM de error
-       // PUSService1::BuildTM_1_8_TC_129_X_TCNotValid(tcHandler, tmList, 0); // Error: Valores fuera de rango
+        //PUSService1::BuildTM_1_8_TC_129_1_VOutOfRange(tcHandler, tmList, 0); // Error: Valores fuera de rango
     }
 }
 
