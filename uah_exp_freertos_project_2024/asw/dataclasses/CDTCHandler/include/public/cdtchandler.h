@@ -7,7 +7,7 @@
 #include "public/tmtc_dyn_mem.h"
 
 enum TTCExecCtrl {
-	ExecCtrlPrioTC, ExecCtrlReboot,ExecCtrlHK_FDIRTC,ExecCtrlBKGTC, ExecCtrlGuidanceTC
+	ExecCtrlPrioTC, ExecCtrlReboot,ExecCtrlHK_FDIRTC,ExecCtrlBKGTC,ExecCtrlGuidanceTC
 };
 
 enum TTCAcceptationStatus {
@@ -132,10 +132,22 @@ protected:
 		mTCExecCtrl = ExecCtrlBKGTC;
 	}
 
+        /**
+	 
+        * \brief Set mTCExecCtrl to ExecCtrlGuidance
+	 
+        *
+	 
+        */
+
 	void SetExecCtrlAsGuidanceTC() {
 
-			mTCExecCtrl = ExecCtrlGuidanceTC;
-		}
+
+		
+                mTCExecCtrl = ExecCtrlGuidanceTC;
+	
+        }
+
 
 
 	/**
@@ -201,9 +213,9 @@ public:
 			return ExecCtrlBKGTC == mTCExecCtrl;
 	}
 
-	bool_t IsGuidanceTC() {
-				return ExecCtrlGuidanceTC == mTCExecCtrl;
-		}
+        bool_t IsGuidanceTC() {
+			return ExecCtrlGuidanceTC == mTCExecCtrl;
+	}
 
 	/**
 	 * \brief Get APID
